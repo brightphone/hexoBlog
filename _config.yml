@@ -82,5 +82,5 @@ stylus:
 deploy:
 - type: git
   # 下方的gh_token会被.travis.yml中sed命令替换
-  repo: https://gh_token@github.com/brightphone/brightphone.github.io.git
+  repo: https://4c7314235a5cb144bbce6cc2ca65119449089f60@github.com/brightphone/brightphone.github.io.git
   branch: master
