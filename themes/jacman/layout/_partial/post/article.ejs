@@ -26,7 +26,7 @@
 			repo: 'comments',
 			owner: 'brightphone',
 			admin: ['brightphone'],
-			id: "{{ page.url | prepend: site.host_url }}",
+			id: "{{ item.title }}",
 			distractionFreeMode: false
 		});
 		gitalk.render('gitalk-container')
