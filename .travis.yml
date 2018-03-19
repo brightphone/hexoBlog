@@ -6,6 +6,12 @@ sudo: required
 node_js: 
   - 9.7.1
 # 指定缓存模块，可选。缓存可加快编译速度。
+notifications:
+  email:
+    recipients:
+      - zbrightz@163.com
+    on_success: change # default: change
+    on_failure: always # default: always
 cache:
   directories:
     - node_modules
@@ -22,15 +28,27 @@ install:
 script:
   - hexo clean
   - hexo generate
-
-# 设置git提交名，邮箱；替换真实token到_config.yml文件，最后depoy部署
-before_script:
+  - cp README.md ./public/README.md
+after_script:
+  - cd ./public
+  - git init
   - git config user.name "brightphone"
   - git config user.email "zbrightz@163.com"
-  # 替换同目录下的_config.yml文件中gh_token字符串为travis后台刚才配置的变量，注意此处sed命令用了双引号。单引号无效！
-  - sed -i "s/gh_token/${GH_TOKEN}/g"   _config.yml
-#  - sed -i "s/co_token/${CO_TOKEN}/g"   _config.yml
-# 执行的成功后执行 
-after_success:
-  - hexo deploy
-# End: Build LifeCycle
+  - git add .
+  - git commit -m "Update Blog By TravisCI With Build $TRAVIS_BUILD_NUMBER"
+  # Github Pages
+  - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:master 
+  # Coding Pages
+  - git push --force --quiet "https://brightphone:${CO_TOKEN}@${CO_REF}" master:master
+  
+  - git tag v0.0.$TRAVIS_BUILD_NUMBER -a -m "Auto Taged By TravisCI With Build $TRAVIS_BUILD_NUMBER"
+  # Github Pages
+  - git push --quiet "https://${GH_TOKEN}@${GH_REF}" master:master --tags
+  # Coding Pages
+  - git push --quiet "https://brightphone:${CO_TOKEN}@${CO_REF}" master:master --tags
+  
+global:
+   # Github Pages
+ - GH_REF: github.com/brightphone/brightphone.github.io
+   # Coding Pages
+ - CO_REF: git.coding.net/brightphone/brightphone.coding.me.git

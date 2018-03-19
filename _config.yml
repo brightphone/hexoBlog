@@ -79,11 +79,11 @@ stylus:
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  - type: git
+  type: git
   repo: https://gh_token@github.com/brightphone/brightphone.github.io.git
   branch: master
-  message: Travis CI for hexo_blog 
-#  - type: git
-#  repo: https://co_token@git.coding.net/brightphone/brightphone.coding.me.git
-#  branch: master
-#  message: Travis CI for hexo_blog :Updated at {{ now('YYYY-MM-DD HH:mm:ss') }}
+  message: Travis CI for hexo_blog :Updated at 
+  type: git
+  repo: https://co_token@git.coding.net/brightphone/brightphone.coding.me.git
+  branch: master
+  message: Travis CI for hexo_blog :Updated at {{ now('YYYY-MM-DD HH:mm:ss') }}
