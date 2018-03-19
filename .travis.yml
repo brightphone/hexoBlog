@@ -37,15 +37,15 @@ after_script:
   - git add --all .
   - git commit -m "Update Blog By TravisCI With Build $TRAVIS_BUILD_NUMBER"
   # Github Pages
-  - git push --force --quiet "https://brightphone:${GH_TOKEN}@${GH_REF}" HEAD:master 
+  - git push --force --quiet "https://brightphone:${GH_TOKEN}@github.com/brightphone/brightphone.github.io.git" HEAD:master 
   # Coding Pages
-  - git push --force --quiet "https://brightphone:${CO_TOKEN}@${CO_REF}" HEAD:master
+  - git push --force --quiet "https://brightphone:${CO_TOKEN}@git.coding.net/brightphone/brightphone.coding.me.git" HEAD:master
   
   - git tag v0.0.$TRAVIS_BUILD_NUMBER -a -m "Auto Taged By TravisCI With Build $TRAVIS_BUILD_NUMBER"
   # Github Pages
-  - git push --quiet "https://brightphone:${GH_TOKEN}@${GH_REF}" HEAD:master --tags
+  - git push --quiet "https://brightphone:${GH_TOKEN}@github.com/brightphone/brightphone.github.io.git" HEAD:master --tags
   # Coding Pages
-  - git push --quiet "https://brightphone:${CO_TOKEN}@${CO_REF}" HEAD:master --tags
+  - git push --quiet "https://brightphone:${CO_TOKEN}@git.coding.net/brightphone/brightphone.coding.me.git" HEAD:master --tags
   
 global:
    # Github Pages
