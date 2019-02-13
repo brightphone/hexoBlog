@@ -1,6 +1,5 @@
 ---
-date: 2018-03-21 22:06:34
-type: "tags"
+layout: "tags"
+title: "Tags"
+header-img: "/img/header_img/tag.png"
 ---
-
-
