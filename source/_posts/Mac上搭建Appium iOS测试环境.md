@@ -123,9 +123,9 @@ iproxy 8100 8100
 ## 使用Java_client
 这里使用IntelliJ创建Maven工程
 
-![](Mac上搭建AppiumiOS测试环境/Snip20190227_1.png)
+![]({{site.baseurl}}Mac上搭建AppiumiOS测试环境/Snip20190227_1.png)
 
-![](Mac上搭建AppiumiOS测试环境/Snip20190227_2.png)
+![]({{site.baseurl}}Mac上搭建AppiumiOS测试环境/Snip20190227_2.png)
 
 
 pom.xml
