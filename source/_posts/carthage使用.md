@@ -35,7 +35,7 @@ Carthage与CocoaPods类似，都是用于在iOS/OS X环境下管理第三方的�
 
 # 使用Carthage
 
-## 1. 先进入到项目所在文件夹
+## 先进入到项目所在文件夹
    
    `$ cd 项目路径`
 
@@ -43,7 +43,7 @@ Carthage与CocoaPods类似，都是用于在iOS/OS X环境下管理第三方的�
 
    `$ touch Cartfile`
 
-## 2. 使用xcode打开Cartfile文件
+## 使用xcode打开Cartfile文件
    
    `open -a Xcode Cartfile`
 
@@ -99,13 +99,13 @@ binary "/absolute/path/MyFramework.json" ~> 2.3
    3.  ~> 1.0 表示使用版本1.0以上但是低于2.0的最新版本，如1.2，1.6
    4. branch名称 / tag名称 / commit名称，意思是使用特定的分支/标签/提交，比如可以是分支名master，也可以是提交5c8a74a。
    
-## 3. 保存并关闭cartfile文件，进行安装
+## 保存并关闭cartfile文件，进行安装
    
    `$ carthage update --no-use-binaries --platform ios(或者 carthage update --platform iOS 这个命令有时候会有问题 ，建议加上 --no-use-binaries)`
    
    安装完之后根目录会出现一个叫Carthage的文件夹，里面包含Build和Checkouts两个文件夹。
    carthage会clone文件中对应的git第三方库，把每一个第三方库编译成二进制文件的framework文件。
- ### --platform
+### --platform
   其中 --platform iOS 命令是可选的，作用是保证只为iOS编译framework，如果不指定平台，会为全平台编译framework文件。如果想要了解更多的命令，可以运行 carthage help update 查看。
 ### -no-user-binary
   有些项目中已经存在打包好的 framework
@@ -128,17 +128,19 @@ binary "/absolute/path/MyFramework.json" ~> 2.3
 
   在"Carthage/Build/iOS"文件夹中会生成 .framework 文件。
 
-## 4.使用carthage build本地工程
+## 使用carthage build本地工程
 `carthage build --platform ios --project-directory ${project} --no-skip-current
 `
 如果你在执行carthage build --no-skip-current
 时编译失败，尝试执行xcodebuild -scheme SCHEME -workspace WORKSPACE build 或 xcodebuild -scheme SCHEME -project PROJECT build（将其中的大写单词换成你项目的对应名称），然后观察是否有相同的失败发生，这应该能生成足够的失败信息来解决问题。
 
 # 添加FrameWorks到项目中
-## 1.项目Target -> Build Setting -> Search Paths -> Framework Search Paths添加
-$(PROJECT_DIR)/Carthage/Build/iOS
+## Add Build Setting
+点击"项目名称"-> "target" -> "Gerneral"，在最底部找到"Linked Frameworks and Libraries"。
+打开Carthage文件夹，进入Build\iOS，拖拽*.framework到Xcode的 Linked Frameworks and Libraries中。
 
-## 2.项目Target -> Build Phases -> '+' -> New Run Script Phase,
+## Add New Run Script Phase 
+项目Target -> Build Phases -> '+' -> New Run Script Phase,
 添加脚本   
 `/usr/local/bin/Carthage copy-frameworks`   
 添加"Input Files"   
@@ -152,23 +154,21 @@ With output files specified alongside the input files, Xcode only needs to run t
 
 当打包程序提交到App Store或TestFlight时，Xcode还会将这些文件复制到应用程序的.xcarchive包的dSYMs子目录中。
 
-![add](./res/carthage/1.webp)
+![add](../img/article/res/carthage/1.webp)
    
 
-## 3.项目Target -> General最底下的Linked Frameworks and Libraries里手动添加需要用的framework.
+## 在需要使用的地方import "xxx"
 
-## 4.在需要使用的地方import "xxx"
-
-![add](./res/carthage/2.webp)
+![add](../img/article/res/carthage/2.webp)
 
 # 使用过程中遇到的问题
 
-## 1.unable to find utility 'xcodebuild, not a developer tool or in PATH'
+## unable to find utility 'xcodebuild, not a developer tool or in PATH'
 在执行Carthage update后，控制台可能会打印这样的错误。
-![add](./res/carthage/3.webp)
+![add](../img/article/res/carthage/3.webp)
 原因是当git源码被checkout后，carthage会进行build。此时若是执行xcodebuild发生错误多半是因为在xcode中没有设置相应的编译工具选项。需要进到xcode的Preference中去设置Command Line Tools.
 
-## 2.单独更新某一个框架
+## 单独更新某一个框架
 例如我新加了这两个框架，只需要更新它们，其他不需要更新。
 github "Alamofire/Alamofire" github "ReactiveX/RxSwift"
 则可以只执行这句
@@ -176,13 +176,13 @@ carthage update Alamofire
 或者指定更新多个框架，空格隔开即可。
 carthage update Alamofire RxSwift
 当执行完后在命令行log中会发现依旧去fetch其他框架，不用担心，并不会重新CheckOut。只会CheckOut和build指定的依赖。
-## 3.Swift二进制框架下载兼容性
+## Swift二进制框架下载兼容性
 Carthage将检查以确保下载的Swift（和混合的Objective-C / Swift）框架是使用本地使用的相同版本的Swift构建的。 如果有版本不匹配，Carthage将继续从源代码构建框架。 如果框架不能从源代码构建，Carthage将失败。
 
 因为Carthage使用xcrun swift --version的输出来确定本地Swift版本，所以请确保运行Carthage命令，使用你打算使用的Swift工具链。对于大多数情况，不需要额外的去注意整个问题。但是，举例来说，如果你使用Xcode8.x 去编译一个Swift2.3的项目，一种为carthage bootstrap指定默认swift的方法是使用以下命令    
 `TOOLCHAINS=com.apple.dt.toolchain.Swift_2_3 carthage bootstrap
 `
-## 4.向单元测试或框架添加框架
+## 向单元测试或框架添加框架
 对任何任意target,使用Carthage非常类似于前面提到的给应用添加frameworks。 主要的区别在于frameworks如何在Xcode中设置和链接。
 
 因为单元测试target在其“General”设置选项卡中缺少“Linked Frameworks and Libraries”部分，所以必须将构建的frameworks拖动到“Link Binaries With Libraries”构建阶段。
