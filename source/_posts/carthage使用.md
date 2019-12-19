@@ -154,18 +154,18 @@ With output files specified alongside the input files, Xcode only needs to run t
 
 当打包程序提交到App Store或TestFlight时，Xcode还会将这些文件复制到应用程序的.xcarchive包的dSYMs子目录中。
 
-![add](../img/article/res/carthage/1.webp)
+![add](/img/article/res/carthage/1.webp)
    
 
 ## 在需要使用的地方import "xxx"
 
-![add](../img/article/res/carthage/2.webp)
+![add](/img/article/res/carthage/2.webp)
 
 # 使用过程中遇到的问题
 
 ## unable to find utility 'xcodebuild, not a developer tool or in PATH'
-在执行Carthage update后，控制台可能会打印这样的错误。
-![add](../img/article/res/carthage/3.webp)
+在执行Carthage update后，控制台可能会打印这样的错误。  
+![add](/img/article/res/carthage/3.webp)
 原因是当git源码被checkout后，carthage会进行build。此时若是执行xcodebuild发生错误多半是因为在xcode中没有设置相应的编译工具选项。需要进到xcode的Preference中去设置Command Line Tools.
 
 ## 单独更新某一个框架
