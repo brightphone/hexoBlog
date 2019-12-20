@@ -1,18 +1,15 @@
 ---
+layout: post
 title: "carthage基本使用"
-catalog: true
-toc_nav_num: true
 date: 2019-04-18 12:00:00
-header-img: "/img/article_header/article_header.png"
-tags:
-- Carthage
-catagories:
-- [Carthage]
-
+comments: true
+catagories: Tools
+tags: [Carthage]
 ---
-# 简介  
+ 
 Carthage与CocoaPods类似，都是用于在iOS/OS X环境下管理第三方的工具,Carthage不会像CocoaPods那样创建一个workspace。而是直接提供了一种去中心化的依赖管理系统，不提供中心化的项目列表，使用者可以自行添加类库，对项目的侵入性也较少。可以理解为只帮你下载和更新第三方依赖，怎么用看你自己.Carthage使用xcodebuild去编译依赖，而不是将依赖集成到一个单一的工作区间，它没有类似的规范文件(例如CocoaPods 的 podspec)，但你的依赖必须包括它们自己的Xcode工程文件来描述是如何编译它们的项目。
 
+<!--more-->
 
 # 安装Carthage:
 推荐使用HomeBrew进行安装

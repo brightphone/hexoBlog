@@ -1,24 +1,24 @@
 ---
+layout: post
 title: "Mac 上搭建Appium iOS测试环境"
-catalog: true
-toc_nav_num: true
 date: 2019-02-13 12:00:00
-header-img: "/img/article_header/article_header.png"
-tags:
-- Appium
-catagories:
-- [Appium]
-
+comments: true
+catagories: Appium
+tags: [Appium]
 ---
+
 
 # Mac 上通过Appium实现自动化测试
 
 ## [安装Homebrew](https://brew.sh)
 
 Homebrew是一款Mac OS平台下的软件包管理工具，拥有安装、卸载、更新、查看、搜索等很多实用的功能。简单的一条指令，就可以实现包管理，而不用你关心各种依赖和文件路径的情况，十分方便快捷.
+
 ```
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
+
+<!--more-->
 
 ## 安装NodeJS
 
@@ -105,14 +105,15 @@ brew unlink usbmuxd
 brew link usbmuxd
 brew install --HEAD libimobiledevice
 brew install ideviceinstaller
+
 ```
-成功运行WebDriverAgent后，通过浏览器输入http://10.60.22.70:8100，发现没有反应，这是因为：有些国产的iPhone机器通过手机的IP和端口还不能访问，此时需要将手机的端口转发到Mac上。关于这个问题，通过端口转发才看到效果，所以你也应该会遇到同样的问题，[可以参考这里](https://github.com/facebook/WebDriverAgent/wiki/USB-support)。
+成功运行WebDriverAgent后，通过浏览器输入 `http://10.60.22.70:8100`，发现没有反应，这是因为：有些国产的iPhone机器通过手机的IP和端口还不能访问，此时需要将手机的端口转发到Mac上。关于这个问题，通过端口转发才看到效果，所以你也应该会遇到同样的问题，[可以参考这里](https://github.com/facebook/WebDriverAgent/wiki/USB-support)。
 
 运行以下命令：
 ```
 iproxy 8100 8100
 ```
-这时在浏览器中输入：http://localhost:8100/status 即可看到response.(即使不使用iproxy，在浏览器中输入http://10.60.22.70:8100没反应也不会影响后面的测试)
+这时在浏览器中输入：http://localhost:8100/status 即可看到response.(即使不使用iproxy，在浏览器中输入`http://10.60.22.70:8100`没反应也不会影响后面的测试)
 
 输入http://localhost:8100/inspector 可以查看手机屏幕，不过很慢很慢
 
@@ -122,11 +123,8 @@ iproxy 8100 8100
 
 ## 使用Java_client
 这里使用IntelliJ创建Maven工程
-
-![]({{site.baseurl}}Mac上搭建AppiumiOS测试环境/Snip20190227_1.png)
-
-![]({{site.baseurl}}Mac上搭建AppiumiOS测试环境/Snip20190227_2.png)
-
+![](images/article/res/AppiumiOS/Snip20190227_1.png)
+![](images/article/res/AppiumiOS/Snip20190227_2.png)
 
 pom.xml
 ```

@@ -1,13 +1,7 @@
 ---
-layout: "about"
-title: "About"
-date: 2019-2-13 13:26:33
-header-img: "/img/header_img/about.jpg"
-aplayer: true
-fixed: false
+title: 关于我
+date: 2018-07-16 12:39:39
+type: "about"
 ---
 
-### 一句话
-
->Keep going ……
-
+Keep going……

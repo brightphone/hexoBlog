@@ -1,19 +1,16 @@
 ---
+layout: post
 title: "libimobiledevice的安装和常用命令"
-catalog: true
-toc_nav_num: true
 date: 2019-02-25 12:00:00
-header-img: "/img/article_header/article_header.png"
-tags:
-- Tools
-catagories:
-- [Tools]
-
+comments: true
+catagories: Tools
+tags: [libimobiledevice]
 ---
 
-# 介绍
 
 libimobiledevice 是一个跨平台的软件库，【类似android adb 方便获取iOS设备信息】,支持 iPhone®, iPod Touch®, iPad® and Apple TV® 等设备的通讯协议。不依赖任何已有的私有库，不需要越狱。应用软件可以通过这个开发包轻松访问设备的文件系统、获取设备信息，备份和恢复设备，管理 SpringBoard 图标，管理已安装应用，获取通讯录、日程、备注和书签等信息，使用 libgpod 同步音乐和视频。
+
+<!--more-->
 
 官方网站：http://www.libimobiledevice.org
 
