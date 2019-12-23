@@ -123,8 +123,8 @@ iproxy 8100 8100
 
 ## 使用Java_client
 这里使用IntelliJ创建Maven工程   
-![image](/source/res/images/article/AppiumiOS/Snip20190227_1.png)   
-![image](/source/res/images/article/AppiumiOS/Snip20190227_2.png)
+![image](/res/images/article/AppiumiOS/Snip20190227_1.png)   
+![image](/res/images/article/AppiumiOS/Snip20190227_2.png)
 
 pom.xml
 ```
