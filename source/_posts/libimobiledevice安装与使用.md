@@ -8,7 +8,7 @@ tags: [libimobiledevice]
 ---
 
 
-libimobiledevice 是一个跨平台的软件库，【类似android adb 方便获取iOS设备信息】,支持 iPhone®, iPod Touch®, iPad® and Apple TV® 等设备的通讯协议。不依赖任何已有的私有库，不需要越狱。应用软件可以通过这个开发包轻松访问设备的文件系统、获取设备信息，备份和恢复设备，管理 SpringBoard 图标，管理已安装应用，获取通讯录、日程、备注和书签等信息，使用 libgpod 同步音乐和视频。
+libimobiledevice 是一个跨平台的软件库，【类似android adb 方便获取iOS设备信息】,支持 iPhone®, iPod Touch®, iPad® and Apple TV® 等设备的通讯协议。不依赖任何已有的私有库，不需要break jail。应用软件可以通过这个开发包轻松访问设备的文件系统、获取设备信息，备份和恢复设备，管理 SpringBoard 图标，管理已安装应用，获取通讯录、日程、备注和书签等信息，使用 libgpod 同步音乐和视频。
 
 <!--more-->
 
