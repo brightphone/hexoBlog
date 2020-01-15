@@ -104,6 +104,13 @@ pviews命令可以打印当前视图的层级结构，如下所示：
 如果你在原生的XCode中，是敲不出这些命令的，上面只是演示了两个常见的LLDB插件命令的用法，更加高级的用法下面会详细说明。不过在这之前，我们要安装两个插件，接下来先讲解环境的配置。
 ## LLDB插件配置：chisel及LLDB
 chisel是facebook开源的一款LLDB插件，里面封装了很多好用的命令，当然这些命令都是基于苹果提供的api。[chisel下载](https://github.com/facebook/chisel)
+我使用xcode 11.2.1遇到下面问题：
+```
+error: module importing failed: Missing parentheses in call to 'print'. Did you mean print('Whoops! You are missing the <' + arg.argName + '> argument.')? (fblldb.py, line 98)
+  File "temp.py", line 1, in <module>
+```
+因为xcode 11后使用的是python3，不支持python2,去github官网下载master的code后覆盖homebrew中的文件解决了这个问题
+
 这里建议使用包管理工具Homebrew来安装，然后配置脚本路径，演示如下：  
 ![image](/res/images/article/lldb/15.webp)     
 
