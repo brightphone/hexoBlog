@@ -12,9 +12,9 @@ libimobiledevice 是一个跨平台的软件库，【类似android adb 方便获
 
 <!--more-->
 
-官方网站：http://www.libimobiledevice.org
+[官方网站](http://www.libimobiledevice.org)
 
-github地址：https://github.com/libimobiledevice
+[github地址](https://github.com/libimobiledevice)
 
 # 安装方式
 
