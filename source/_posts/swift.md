@@ -620,14 +620,157 @@ swift没有提供可以执行深复制的方法，如果需要，必须自己编
 相等是指两个实例就可见的特性来说具有一样的值。比如同样文本的两个String实例。
 同一是指两个变量或常量是否指向内存中的同一个实例。
 
-# stuct 与 class
+## stuct 与 class
 1.如果类型需要传值，用struct。
 2.如果类型不支持子类继承，用struct。
 3.如果类型要表达的行为相对比较直观，而且包含一些简单值，那么考虑优先使用struct。
 4.其他情况都用class
 
+## 写时复制（COW）
+
+写时复制是指对值类型的底层存储的隐式共享，这种优化能够让某个值类型的多个实例共享同一个底层存储。
+如果某个实例需要修改或者写入存储那么这个实例就会产生一份自己的副本。
+
+```
+@inlinable public func isKnownUniquelyReferenced<T>(_ object: inout T) -> Bool where T : AnyObject
+
+/// Returns a Boolean value indicating whether the given object is known to
+/// have a single strong reference.
+```
+
+swift 的容器以及提供类COW支持，你一般不需要自己实现COW类型。
 
 
+# 协议（protocol）
+```
+protocol TabularDataSource {
+    var numberOfRows: Int { get }
+    var numberOfColumns: Int { get }
+    func label(forColumn column: Int) -> String
+    func itemFor(row: Int, column: Int) -> String 
+}
+```
+{get}表示这些属性可读，如果需要被读写那就用{get set}，协议只可有计算属性和函数
 
+最后，类也可以符合协议。如果类没有父类，语法就跟结构体和枚举一样:
+class ClassName: ProtocolOne, ProtocolTwo { // ...
+}
+如果类有父类，那么父类的名字在前，后跟协议(或者多个协议)。
+class ClassName: SuperClass, ProtocolOne, ProtocolTwo { // ...
+}
+## 协议组合 (&)
+```
+func printTable(dataSource: TabularDataSource & CustomStringConvertible) {  
+    print("Table: \(dataSource.description)")
+    ...
+}
+```
+# 错误处理
+
+可恢复错误和不可恢复错误
+throw必须抛出符合Swift.Error协议类型的实例
+do/catch
+在do中至少有一个try语句
+```
+do {
+    let tokens = try lexer.lex() 
+    print("Lexer output: \(tokens)")
+} 
+catch Lexer.Error.invalidCharacter(let character) { 
+    print("Input contained an invalid character: \(character)")
+} catch {
+    print("An error occurred: \(error)")
+}
+```
+catch 语句支持模式匹配，跟switch语句一样
+
+## try!
+关键字末尾的惊叹号是个很强的暗示，如果用强制性的关键字try！则一旦出现错误程序就会触发陷阱
+## try?
+调用一个可能抛出错误的函数，得到函数原本返回值对应的可空类型返回值，这意味着需要类似guard这样的工具检查可空实例是否有值
+```
+guard let tokens = try? lexer.lex() else {
+    print("Lexing failed, but I don't know why")
+    return 
+}
+```
+带throws的函数不会声明自己会抛出什么样的错误。
+这样会产生两个实际的影响：
+1.不需要修改函数的API就可以随意添加潜在的Error。
+2.在用catch处理错误时，必须总是准备好处理未知的错误类型。
+# extension
+对类型的扩展支持下面几个能力：
+1.添加计算属性
+2.添加新初始化方法
+3.使类型符合协议
+4.添加新方法
+5.添加嵌入类型
+
+
+## typealias 
+为已有类型起别名
+typealias Velocity = Double
+
+swift扩展不允许为类型添加存储属性
+## 为结构体添加初始化方法
+使用extension可以给结构体添加初始化方法，又不会失去成员初始化方法。
+## 嵌套类型和扩展
+Swift 扩展还能给已有的类型添加嵌套类型。
+```
+extension Car {
+    enum Kind {
+        case coupe, sedan
+    }
+    var kind: Kind {
+        if numberOfDoors == 2 {
+            return .coupe 
+        } else {
+            return .sedan 
+        }
+    } 
+}
+```
+
+
+# 泛型
+```
+struct Stack <Elment>{
+    var items = [Elment]()
+    
+    mutating func push(_ newItem: Elment) {
+        items.append(newItem)
+    }
+    mutating func pop() -> Elment? {
+        guard !items.isEmpty else {
+            return nil
+        }
+        return items.removeLast()
+    }
+    func map<U>(_ f:(Elment)->(U)) -> Stack<U> {
+        var mappedItems = [U]()
+        for item  in items {
+            mappedItems.append(f(item))
+        }
+        return Stack<U>(items: mappedItems)
+    }
+}
+```
+### 泛型函数和方法
+```
+func myMap<T,U>(_ items:[T], _f:(T) -> (UI)) -> [U]{
+
+}
+```
+![image](/res/images/article/swift/2.png)
+myMap(_:_:)的使用方式跟map(_:)一样
+```
+let strings = ["one","two","three"]
+let stringLengths = myMap(strings){$0.characters.count}
+print(stringLengths)
+```
+Swift 允许使用类型约束对传递给泛型函数的具体类型进行一些限制，有两种类型约束：
+一种是必须是给定类的子类，还有一种是类型必须符合一个协议（或者一个协议组合）
+
+# @escaping
 # @inlinable
 # @frozen
