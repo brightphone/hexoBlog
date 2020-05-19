@@ -1,14 +1,14 @@
 ---
 layout: post
 title: "Swift备忘"
-date: 2020-04-24 12:00:00
+date: 2020-05-10 12:00:00
 comments: true
 catagories: language
 tags: [iOS]
 ---
 # 函数
 func funcName(outerName innerName:Type,... )
-
+<!--more-->
 outerName：是外部参数名，如果省略不写即表示外部参数名与内部参数名一致，如果为“_”表示无外部参数名。
 "_":可以使函数被调用时省去外部名，
 ## 变长参数
@@ -32,7 +32,6 @@ in-out 参数能让函数修改函数体外的变量，实际上就相当于指�
 in-out 参数不能有默认值，也不可以是变长参数。
 调用时要使用取地址符号"&"
 
-<!--more-->
 函数的形参不可以再赋值
 
 ```
