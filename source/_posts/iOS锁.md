@@ -1,18 +1,19 @@
 ---
 layout: post
-title: "Objc_Runtime"
-date: 2020-05-12 12:00:00
+title: "iOS锁"
+date: 2020-05-20 12:00:00
 comments: true
 catagories: language
-tags: [iOS]]
+tags: [iOS]
 ---
 
 当多个线程同时操作同一块资源或者说同一个对象的时候，可能会造成各种意想不到的情况(比如数据错乱、资源争夺、崩溃等)，而锁就是为了能够保证同一时刻只有一个线程在操作这个数据应运而生的，为了保证数据的原子性。
 目前iOS中实现锁的方法也比较多
 
+<!--more-->
 ![image](/res/images/article/ioslock/1.png)
 ![image](/res/images/article/ioslock/1.webp)
-<!--more-->
+
 # OSSpinLock 自旋锁
 OS_SPINLOCK_INIT： 默认值为 0,在 locked 状态时就会大于 0，unlocked状态下为 0
 OSSpinLockLock(&oslock)：上锁，参数为 OSSpinLock 地址
