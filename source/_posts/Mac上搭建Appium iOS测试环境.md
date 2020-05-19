@@ -134,10 +134,15 @@ pom.xml
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.Iight</groupId>
+    <groupId>com.light</groupId>
     <artifactId>appiumTestDemo</artifactId>
     <version>1.0-SNAPSHOT</version>
-
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
     <dependencies>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
@@ -150,8 +155,6 @@ pom.xml
             <version>7.0.0</version>
         </dependency>
     </dependencies>
-
-
 </project>
 ```
 在test>java下建立一个class，名为testDemo
