@@ -9,7 +9,12 @@ tags: [iOS]
 
 Objc是一门动态语言，所以它总是想办法把一些决定工作从编译连接推迟到运行时。也就是说只有编译器是不够的，还需要一个运行时系统(runtime system) 来执行编译后的代码。这就是 Objective-C Runtime.
 <!--more-->
-RunTime简称运行时。OC就是运行时机制，其中最主要的是消息机制。对于C语言，函数的调用在编译的时候会决定调用哪个函数。对于OC的函数，属于动态调用过程，在编译的时候并不能决定真正调用哪个函数，只有在真正运行的时候才会根据函数的名称找到对应的函数来调用
+RunTime简称运行时。OC就是运行时机制，其中最主要的是消息机制。对于C语言，函数的调用在编译的时候会决定调用哪个函数。对于OC的函数，属于动态调用过程，在编译的时候并不能决定真正调用哪个函数，只有在真正运行的时候才会根据函数的名称找到对应的函数来调用.
+Runtime基本是用C和汇编写的，苹果和GNU各自维护一个开源的runtime版本，这两个版本之间都在努力的保持一致。
+
+- https://opensource.apple.com/tarballs/objc4/
+- https://github.com/RetVal/objc-runtime
+  
 
 # id&Class
 ```C
@@ -27,7 +32,7 @@ typedef struct objc_selector *SEL;
 /// 函数指针, 用于表示对象方法的实现
 typedef id (*IMP)(id, SEL, ...);
 ```
-# Define
+## Define
 
 - 对对象进行操作的方法一般以object_开头
 - 对类进行操作的方法一般以class_开头
@@ -38,7 +43,7 @@ typedef id (*IMP)(id, SEL, ...);
 
 根据以上的函数的前缀 可以大致了解到层级关系。对于以objc_开头的方法，则是runtime最终的管家，可以获取内存中类的加载信息,类的列表，关联对象和关联属性等操作。
 
-# important method
+## important method
 ```C
 objc_copyClassList
 

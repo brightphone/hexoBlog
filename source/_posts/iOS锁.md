@@ -12,7 +12,7 @@ tags: [iOS]
 
 <!--more-->
 ![image](/res/images/article/ioslock/1.png)
-![image](/res/images/article/ioslock/1.webp)
+![image](/res/images/article/ioslock/2.png)
 
 # OSSpinLock 自旋锁
 OS_SPINLOCK_INIT： 默认值为 0,在 locked 状态时就会大于 0，unlocked状态下为 0
