@@ -7,7 +7,7 @@ catagories: swift
 tags: [iOS][Combine][Swift]
 ---
 
-Subject 是一类比较特殊的发布者，因为它同时也是订阅者。Combine 提供了两类 Subject ：PassthroughSubject 和 CurrentValueSubject。
+Subject 是一类比较特殊的发布者，因为它同时也是订阅者。Combine 提供了两类 Subject ：PassthroughSubject 和 `CurrentValueSubject`。
 <!--more-->
 # PassthroughSubject
 PassthroughSubject 可以向下游订阅者广播发送元素。使用 PassthroughSubject 可以很好地适应命令式编程场景。
