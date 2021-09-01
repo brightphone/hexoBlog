@@ -12,7 +12,7 @@ Subject 是一类比较特殊的发布者，因为它同时也是订阅者。Com
 # PassthroughSubject
 PassthroughSubject 可以向下游订阅者广播发送元素。使用 PassthroughSubject 可以很好地适应命令式编程场景。
 
-如果没有订阅者，或者需求为0，PassthroughSubject 就会丢弃元素。
+如果没有订阅者，或者需求为0，`PassthroughSubject` 就会丢弃元素。
 ```
 final class SubjectsDemo {
     private var cancellable: AnyCancellable?
